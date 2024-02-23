@@ -21,18 +21,22 @@ const Datatable = ({ columns }) => {
     try {
       const res = await axios.delete(`/${path}/${id}`);
       setList(list.filter((item) => item.id !== id));
-      toast.success(res.data.message)
+      toast.success(res.data.message);
     } catch (error) {
       console.log(error);
     }
   };
   const listname = path.charAt(0).toUpperCase() + path.slice(1);
-
+  const handleRowClick = (row,event) => {
+    if (path === "user" && !event.target.classList.contains('deleteButton')) {
+      navigate(`${row.id}`)
+    }
+  };
   const actionColumn = [
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 100,
       renderCell: (params) => {
         return (
           <div className="cellAction">
@@ -62,9 +66,8 @@ const Datatable = ({ columns }) => {
         experimentalFeatures={{ newEditingApi: true }}
         pageSize={9}
         rowsPerPageOptions={[9]}
-        checkboxSelection
         getRowId={(row) => row.id}
-        onRowClick={(row)=>{path==='user' && navigate(`${row.id}`)}}
+        onRowClick={handleRowClick}
       />
       <ToastContainer
         position="bottom-center"

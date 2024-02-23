@@ -1,8 +1,10 @@
 import "./sidebar.scss";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
-import StoreIcon from "@mui/icons-material/Store";
+import BusinessIcon from '@mui/icons-material/Business';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { Link, useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
@@ -42,14 +44,26 @@ const Sidebar = () => {
           </Link>
           <Link to="/company" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <BusinessIcon className="icon" />
               <span>Company</span>
             </li>
           </Link>
-          <Link to="/rooms" style={{ textDecoration: "none" }}>
+          <Link to="/model" style={{ textDecoration: "none" }}>
           <li>
-            <CreditCardIcon className="icon" />
-            <span>Rooms</span>
+            <DirectionsCarIcon className="icon" />
+            <span>Model</span>
+          </li>
+          </Link>
+          <Link to="/service" style={{ textDecoration: "none" }}>
+          <li>
+            <MiscellaneousServicesIcon className="icon" />
+            <span>Serivce</span>
+          </li>
+          </Link>
+          <Link to="/price" style={{ textDecoration: "none" }}>
+          <li>
+            <AttachMoneyIcon className="icon" />
+            <span>Price</span>
           </li>
           </Link>
           <p className="title">USEFUL</p>

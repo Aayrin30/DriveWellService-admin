@@ -28,7 +28,7 @@ const Login = () => {
         dispatch2({ type: "LOGIN_SUCCESS", payload: res.data });
         toast.success("You are Login Successfully");
         setTimeout(() => {
-          navigate("/users");
+          navigate("/user");
         }, 3000);
       } else {
         dispatch2({

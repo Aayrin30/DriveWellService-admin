@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DarkModeContext } from "../../context/darkModeContext";
 
-const NewHotel = () => {
+const NewCompany = () => {
   const [info, setInfo] = useState({});
   const navigate = useNavigate();
   const { darkMode } = useContext(DarkModeContext)
@@ -40,7 +40,7 @@ const NewHotel = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Add New Product</h1>
+          <h1>Add New Company</h1>
         </div>
         <div className="bottom">
           <div className="right">
@@ -54,7 +54,7 @@ const NewHotel = () => {
                     type={input.type}
                     placeholder={input.placeholder}
                     contentEditable="true"
-                    required
+                    required={input.required}
                   />
                   <span>{input.errorMessage}</span>
                 </div>
@@ -80,4 +80,4 @@ const NewHotel = () => {
   );
 };
 
-export default NewHotel;
+export default NewCompany;

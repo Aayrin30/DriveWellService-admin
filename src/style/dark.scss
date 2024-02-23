@@ -55,7 +55,18 @@
       border: none;
       text-align: center;
       color: white;
-      
+      .MuiTablePagination-toolbar {
+        color: white;
+      }
+
+      .MuiTablePagination-actions .MuiButtonBase-root {
+        color: white;
+      }
+
+      /* Change color of selected pagination button */
+      .Mui-selected {
+        color: white;
+      }
 
       .viewButton,
       .deleteButton,
@@ -80,5 +91,4 @@
     background-color: #111;
     color: white;
   }
-
 }

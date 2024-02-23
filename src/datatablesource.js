@@ -1,5 +1,5 @@
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 400 },
+  { field: "id", headerName: "ID", width: 320 },
   {
     field: "username",
     headerName: "User",
@@ -27,7 +27,7 @@ export const userColumns = [
 ];
 
 export const companyColumns = [
-  { field: "id", headerName: "ID", width: 400 },
+  { field: "id", headerName: "ID", width: 320 },
   {
     field: "name",
     headerName: "Name",
@@ -40,26 +40,34 @@ export const companyColumns = [
   },
 ];
 
-export const roomColumns = [
-  { field: "_id", headerName: "ID", width: 230 },
+export const modelColumns = [
+  { field: "id", headerName: "ID", width: 320 },
   {
-    field: "title",
-    headerName: "Title",
+    field: "name",
+    headerName: "Name",
     width: 150,
   },
   {
-    field: "desc",
-    headerName: "Description",
-    width: 250,
+    field: "companyId",
+    headerName: "Company Id",
+    width: 320,
   },
+];
+export const serviceColumns = [
+  { field: "id", headerName: "ID", width: 320 },
+  {
+    field: "name",
+    headerName: "Name",
+    width: 350,
+  }
+];
+export const priceColumns = [
+  { field: "id", headerName: "ID", width: 320 },
   {
     field: "price",
     headerName: "Price",
-    width: 90,
+    width: 100,
   },
-  {
-    field: "maxPeople",
-    headerName: "Max People",
-    width: 110,
-  },
+  { field: "modelId", headerName: "Model ID", width: 320 },
+  { field: "serviceId", headerName: "Service ID", width: 320 },
 ];
