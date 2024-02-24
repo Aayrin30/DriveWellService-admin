@@ -8,7 +8,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
-import { companyColumns, modelColumns, priceColumns, serviceColumns, userColumns } from "./datatablesource";
+import { appointmentColumns, companyColumns, modelColumns, priceColumns, serviceColumns, userColumns } from "./datatablesource";
 import NewModel from "./pages/newModel/NewModel";
 import NewCompany from "./pages/newCompany/NewCompany";
 import NewService from "./pages/newService/NewService";
@@ -100,6 +100,17 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <List columns={priceColumns} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="new" element={<NewPrice />} />
+            </Route>
+            <Route path="appointment">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={appointmentColumns} />
                   </ProtectedRoute>
                 }
               />

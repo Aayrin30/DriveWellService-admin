@@ -2,10 +2,11 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { Switch } from "@mui/material";
 
 const Datatable = ({ columns }) => {
   const location = useLocation();
@@ -17,40 +18,73 @@ const Datatable = ({ columns }) => {
     setList(data);
   }, [data]);
 
-  const handleDelete = async (id) => {
-    try {
-      const res = await axios.delete(`/${path}/${id}`);
-      setList(list.filter((item) => item.id !== id));
-      toast.success(res.data.message);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const listname = path.charAt(0).toUpperCase() + path.slice(1);
-  const handleRowClick = (row,event) => {
-    if (path === "user" && !event.target.classList.contains('deleteButton')) {
-      navigate(`${row.id}`)
+  const handleRowClick = (row, event) => {
+    if (path === "user" && !event.target.classList.contains("deleteButton")) {
+      navigate(`${row.id}`);
     }
   };
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 100,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
+  const actionColumn = useMemo(() => {
+    const handleDelete = async (id) => {
+      try {
+        const res = await axios.delete(`/${path}/${id}`);
+        setList(list.filter((item) => item.id !== id));
+        toast.success(res.data.message);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const handleCompleted = async (id) => {
+      try {
+        const res = await axios.put(`/${path}/${id}`, { status: true });
+        toast.success(res.data.message);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const baseColumns = [
+      {
+        field: "action",
+        headerName: "Action",
+        width: 100,
+        renderCell: (params) => {
+          return (
+            <div className="cellAction">
+              <div
+                className="deleteButton"
+                onClick={() => handleDelete(params.row.id)}
+              >
+                Delete
+              </div>
             </div>
-          </div>
-        );
+          );
+        },
       },
-    },
-  ];
+    ];
+
+    if (path === "appointment") {
+      baseColumns.push({
+        headerName: "Completed",
+        width: 120,
+        renderCell: (params) => {
+          const status = params.row.status;
+          return (
+            <>
+              {!status &&
+                <Switch
+                  onChange={() => handleCompleted(params.row.id)}
+                  inputProps={{ "aria-label": "Toggle status" }}
+                />
+              }
+            </>
+          );
+        },
+      });
+    }
+
+    return baseColumns;
+  }, [list, path]);
   return (
     <div className="datatable">
       <div className="datatableTitle">

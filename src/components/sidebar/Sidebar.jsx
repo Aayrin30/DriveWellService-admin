@@ -5,6 +5,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import BookOnlineIcon from '@mui/icons-material/BookOnline';
 import { Link, useNavigate } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
@@ -64,6 +65,12 @@ const Sidebar = () => {
           <li>
             <AttachMoneyIcon className="icon" />
             <span>Price</span>
+          </li>
+          </Link>
+          <Link to="/appointment" style={{ textDecoration: "none" }}>
+          <li>
+            <BookOnlineIcon className="icon" />
+            <span>Appointment</span>
           </li>
           </Link>
           <p className="title">USEFUL</p>
